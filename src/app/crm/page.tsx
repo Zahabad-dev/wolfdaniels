@@ -37,6 +37,15 @@ export default async function CrmDashboard() {
         </header>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <Link
+            href="/crm/catalogo"
+            className="rounded-2xl border border-white/10 bg-brand-gray2 p-6 transition-colors hover:border-brand-gold"
+          >
+            <h2 className="font-heading text-lg text-brand-gold">Catálogo</h2>
+            <p className="mt-1 text-sm text-brand-cream/60">
+              Actualizar el link del catálogo que envía el bot
+            </p>
+          </Link>
           {Object.entries(CRM_TABLES).map(([slug, info]) => (
             <Link
               key={slug}
