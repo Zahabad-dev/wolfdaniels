@@ -1,8 +1,11 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { AuthError } from "next-auth";
 import { signIn, signOut, auth } from "@/auth";
 import { query } from "@/lib/db";
+
+const PRIORIDADES = ["BAJA", "MEDIA", "ALTA"] as const;
 
 export async function loginAction(
   _prevState: string | undefined,
@@ -53,4 +56,35 @@ export async function actualizarCatalogoAction(
   );
 
   return { success: "Catálogo actualizado. El bot ya enviará este link." };
+}
+
+export async function actualizarPrioridadAction(formData: FormData) {
+  const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
+  const prioridad = String(formData.get("prioridad") || "");
+
+  if (!numeroWhatsapp || !PRIORIDADES.includes(prioridad as typeof PRIORIDADES[number])) {
+    return;
+  }
+
+  await query(
+    `UPDATE solicitudes_mayoreo SET prioridad = $1 WHERE numero_whatsapp = $2`,
+    [prioridad, numeroWhatsapp]
+  );
+
+  revalidatePath("/crm/solicitudes");
+}
+
+export async function actualizarBotActivoAction(formData: FormData) {
+  const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
+  // El checkbox manda "on" cuando está activo (bot_bloqueado = false).
+  const botActivo = formData.get("bot_activo") === "on";
+
+  if (!numeroWhatsapp) return;
+
+  await query(
+    `UPDATE solicitudes_mayoreo SET bot_bloqueado = $1 WHERE numero_whatsapp = $2`,
+    [!botActivo, numeroWhatsapp]
+  );
+
+  revalidatePath("/crm/solicitudes");
 }

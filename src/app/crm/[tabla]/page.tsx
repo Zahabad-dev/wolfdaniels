@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CRM_TABLES, CrmTableSlug, query } from "@/lib/db";
+import PrioridadSelect from "./prioridad-select";
+import BotToggle from "./bot-toggle";
+
+export const dynamic = "force-dynamic";
 
 const ROW_LIMIT = 100;
 
@@ -61,11 +65,37 @@ export default async function CrmTablePage({
                   key={i}
                   className="border-t border-white/5 text-brand-cream/80 odd:bg-white/[0.02]"
                 >
-                  {columns.map((col) => (
-                    <td key={col} className="whitespace-nowrap px-4 py-2">
-                      {formatCell((row as Record<string, unknown>)[col])}
-                    </td>
-                  ))}
+                  {columns.map((col) => {
+                    const typedRow = row as Record<string, unknown>;
+
+                    if (tabla === "solicitudes" && col === "prioridad") {
+                      return (
+                        <td key={col} className="whitespace-nowrap px-4 py-2">
+                          <PrioridadSelect
+                            numeroWhatsapp={String(typedRow.numero_whatsapp)}
+                            value={String(typedRow.prioridad)}
+                          />
+                        </td>
+                      );
+                    }
+
+                    if (tabla === "solicitudes" && col === "bot_bloqueado") {
+                      return (
+                        <td key={col} className="whitespace-nowrap px-4 py-2">
+                          <BotToggle
+                            numeroWhatsapp={String(typedRow.numero_whatsapp)}
+                            activo={!typedRow.bot_bloqueado}
+                          />
+                        </td>
+                      );
+                    }
+
+                    return (
+                      <td key={col} className="whitespace-nowrap px-4 py-2">
+                        {formatCell(typedRow[col])}
+                      </td>
+                    );
+                  })}
                 </tr>
               ))}
             </tbody>
