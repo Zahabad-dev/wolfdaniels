@@ -2,12 +2,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Políticas de uso y privacidad | Wolf Daniel's & Maktub",
+  title: "Política de privacidad | Wolf Daniel's & Maktub",
   description:
-    "Política de uso, privacidad y manejo de datos personales de Wolf Daniel's & Maktub, incluyendo el flujo de atención por WhatsApp.",
+    "Política de privacidad de Wolf Daniel's & Maktub: qué datos recabamos, cómo los usamos, el flujo de atención por WhatsApp y tus derechos ARCO.",
 };
 
-export default function PoliticasDeUso() {
+export default function PoliticaDePrivacidad() {
   return (
     <div className="flex flex-1 flex-col bg-brand-black">
       <Header />
@@ -15,7 +15,7 @@ export default function PoliticasDeUso() {
       <main className="flex-1 px-6 py-16">
         <div className="mx-auto max-w-3xl text-brand-cream/80">
           <h1 className="text-3xl text-brand-cream sm:text-4xl">
-            Políticas de uso y privacidad
+            Política de privacidad
           </h1>
           <p className="mt-2 text-sm text-brand-cream/50">
             Última actualización: 13 de junio de 2026
@@ -28,16 +28,16 @@ export default function PoliticasDeUso() {
             <p>
               Wolf Daniel&apos;s &amp; Maktub (en adelante, &quot;nosotros&quot;) es
               responsable del uso y protección de los datos personales que nos
-              proporciones a través de nuestro sitio web, número de WhatsApp y
-              demás canales de contacto, conforme a la Ley Federal de
-              Protección de Datos Personales en Posesión de los Particulares y
-              su normativa aplicable en México.
+              proporciones a través de este sitio web, nuestro número de
+              WhatsApp y demás canales de contacto, conforme a la Ley Federal
+              de Protección de Datos Personales en Posesión de los
+              Particulares y su normativa aplicable en México.
             </p>
           </section>
 
           <section className="mt-8 space-y-3">
             <h2 className="font-heading text-xl text-brand-gold">
-              2. Datos que recabamos
+              2. Información que recopilamos
             </h2>
             <p>Cuando nos contactas, en especial por WhatsApp, podemos recabar:</p>
             <ul className="list-disc space-y-1 pl-6">
@@ -61,7 +61,26 @@ export default function PoliticasDeUso() {
 
           <section className="mt-8 space-y-3">
             <h2 className="font-heading text-xl text-brand-gold">
-              3. Flujo de atención por WhatsApp
+              3. Cómo usamos tu información
+            </h2>
+            <ul className="list-disc space-y-1 pl-6">
+              <li>Brindarte información sobre nuestros productos, catálogo y precios al mayoreo.</li>
+              <li>Generar cotizaciones y dar seguimiento a tu pedido.</li>
+              <li>Procesar pagos, envíos y entregas.</li>
+              <li>Brindar soporte y atención a clientes.</li>
+              <li>Enviarte avisos relacionados con tu pedido (por ejemplo, recordatorios de seguimiento).</li>
+              <li>Mejorar nuestros productos, catálogo y procesos de atención.</li>
+            </ul>
+            <p>
+              No vendemos, rentamos ni compartimos tus datos personales con
+              terceros para fines de mercadotecnia ajenos a Wolf Daniel&apos;s
+              &amp; Maktub.
+            </p>
+          </section>
+
+          <section className="mt-8 space-y-3">
+            <h2 className="font-heading text-xl text-brand-gold">
+              4. Flujo de atención por WhatsApp
             </h2>
             <p>
               Nuestro número de WhatsApp opera a través de la plataforma de
@@ -101,26 +120,7 @@ export default function PoliticasDeUso() {
 
           <section className="mt-8 space-y-3">
             <h2 className="font-heading text-xl text-brand-gold">
-              4. Finalidades del tratamiento
-            </h2>
-            <ul className="list-disc space-y-1 pl-6">
-              <li>Brindarte información sobre nuestros productos, catálogo y precios al mayoreo.</li>
-              <li>Generar cotizaciones y dar seguimiento a tu pedido.</li>
-              <li>Procesar pagos, envíos y entregas.</li>
-              <li>Brindar soporte y atención a clientes.</li>
-              <li>Enviarte avisos relacionados con tu pedido (por ejemplo, recordatorios de seguimiento).</li>
-              <li>Mejorar nuestros productos, catálogo y procesos de atención.</li>
-            </ul>
-            <p>
-              No vendemos, rentamos ni compartimos tus datos personales con
-              terceros para fines de mercadotecnia ajenos a Wolf Daniel&apos;s
-              &amp; Maktub.
-            </p>
-          </section>
-
-          <section className="mt-8 space-y-3">
-            <h2 className="font-heading text-xl text-brand-gold">
-              5. Transferencia de datos
+              5. Cómo compartimos tu información
             </h2>
             <p>
               Para operar nuestro canal de atención usamos la plataforma de
@@ -133,9 +133,49 @@ export default function PoliticasDeUso() {
             </p>
           </section>
 
+          <section id="eliminacion-de-datos" className="mt-8 space-y-3">
+            <h2 className="font-heading text-xl text-brand-gold">
+              6. Conservación y eliminación de datos
+            </h2>
+            <p>
+              Conservamos tus datos personales únicamente durante el tiempo
+              necesario para cumplir con las finalidades descritas en esta
+              política o mientras exista una relación comercial vigente
+              contigo.
+            </p>
+            <p>
+              Si quieres que eliminemos tus datos personales y el historial de
+              conversación de nuestros sistemas, puedes solicitarlo en
+              cualquier momento:
+            </p>
+            <ul className="list-disc space-y-1 pl-6">
+              <li>
+                Escríbenos por el mismo número de WhatsApp con el que nos
+                contactaste, indicando &quot;Eliminar mis datos&quot;.
+              </li>
+              <li>
+                O envíanos un correo a{" "}
+                <a
+                  href="mailto:wolf.daniels22@gmail.com"
+                  className="text-brand-gold underline-offset-4 hover:underline"
+                >
+                  wolf.daniels22@gmail.com
+                </a>{" "}
+                indicando tu número de teléfono y solicitando la eliminación
+                de tus datos.
+              </li>
+            </ul>
+            <p>
+              Atenderemos tu solicitud en un plazo máximo de 20 días hábiles,
+              eliminando tus datos de nuestra base de datos y panel interno,
+              salvo que debamos conservar cierta información por obligación
+              legal o para concluir un pedido en curso.
+            </p>
+          </section>
+
           <section className="mt-8 space-y-3">
             <h2 className="font-heading text-xl text-brand-gold">
-              6. Medidas de seguridad
+              7. Seguridad de la información
             </h2>
             <p>
               Tus datos se almacenan en bases de datos protegidas con acceso
@@ -147,7 +187,7 @@ export default function PoliticasDeUso() {
 
           <section className="mt-8 space-y-3">
             <h2 className="font-heading text-xl text-brand-gold">
-              7. Derechos ARCO
+              8. Derechos ARCO
             </h2>
             <p>
               Tienes derecho a Acceder, Rectificar, Cancelar u Oponerte
@@ -168,7 +208,14 @@ export default function PoliticasDeUso() {
                 <strong className="text-brand-cream">Cancelación:</strong>{" "}
                 solicitar que eliminemos tus datos de nuestros registros
                 cuando consideres que no son necesarios para las finalidades
-                aquí descritas.
+                aquí descritas (ver{" "}
+                <a
+                  href="#eliminacion-de-datos"
+                  className="text-brand-gold underline-offset-4 hover:underline"
+                >
+                  Conservación y eliminación de datos
+                </a>
+                ).
               </li>
               <li>
                 <strong className="text-brand-cream">Oposición:</strong>{" "}
@@ -178,21 +225,58 @@ export default function PoliticasDeUso() {
             <p>
               Para ejercer cualquiera de estos derechos, puedes escribirnos
               por el mismo WhatsApp con el que nos contactaste o enviarnos un
-              correo, indicando tu nombre, el derecho que deseas ejercer y los
-              datos a los que se refiere tu solicitud. Daremos respuesta en un
-              plazo máximo de 20 días hábiles.
+              correo a{" "}
+              <a
+                href="mailto:wolf.daniels22@gmail.com"
+                className="text-brand-gold underline-offset-4 hover:underline"
+              >
+                wolf.daniels22@gmail.com
+              </a>
+              , indicando tu nombre, el derecho que deseas ejercer y los datos
+              a los que se refiere tu solicitud. Daremos respuesta en un plazo
+              máximo de 20 días hábiles.
             </p>
           </section>
 
           <section className="mt-8 space-y-3">
             <h2 className="font-heading text-xl text-brand-gold">
-              8. Cambios a esta política
+              9. Privacidad de menores de edad
             </h2>
             <p>
-              Podemos actualizar esta política de uso y privacidad para
-              reflejar cambios en nuestros procesos o en la legislación
-              aplicable. Cualquier cambio será publicado en esta misma página
-              con su fecha de actualización.
+              Nuestros productos y servicios están dirigidos a mayoristas y
+              negocios. No recopilamos intencionalmente datos personales de
+              menores de edad. Si detectamos que un menor nos ha
+              proporcionado datos personales sin el consentimiento de sus
+              padres o tutores, los eliminaremos de nuestros registros.
+            </p>
+          </section>
+
+          <section className="mt-8 space-y-3">
+            <h2 className="font-heading text-xl text-brand-gold">
+              10. Cambios a esta política
+            </h2>
+            <p>
+              Podemos actualizar esta política de privacidad para reflejar
+              cambios en nuestros procesos o en la legislación aplicable.
+              Cualquier cambio será publicado en esta misma página con su
+              fecha de actualización.
+            </p>
+          </section>
+
+          <section className="mt-8 space-y-3">
+            <h2 className="font-heading text-xl text-brand-gold">
+              11. Contacto
+            </h2>
+            <p>
+              Si tienes dudas sobre esta política de privacidad, escríbenos
+              por WhatsApp o a{" "}
+              <a
+                href="mailto:wolf.daniels22@gmail.com"
+                className="text-brand-gold underline-offset-4 hover:underline"
+              >
+                wolf.daniels22@gmail.com
+              </a>
+              .
             </p>
           </section>
         </div>

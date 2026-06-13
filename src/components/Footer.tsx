@@ -32,11 +32,11 @@ export default function Footer() {
 
         <div className="flex flex-col gap-2 text-sm text-brand-cream/70">
           <span className="font-heading text-brand-cream">Legal</span>
-          <Link href="/politicas-de-uso" className="transition-colors hover:text-brand-gold">
-            Políticas de uso
+          <Link href="/politica-de-privacidad" className="transition-colors hover:text-brand-gold">
+            Política de privacidad
           </Link>
-          <Link href="/condiciones" className="transition-colors hover:text-brand-gold">
-            Condiciones
+          <Link href="/terminos-del-servicio" className="transition-colors hover:text-brand-gold">
+            Términos del servicio
           </Link>
         </div>
       </div>
