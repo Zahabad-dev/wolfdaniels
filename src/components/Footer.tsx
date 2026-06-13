@@ -29,6 +29,16 @@ export default function Footer() {
             Acceso clientes
           </Link>
         </div>
+
+        <div className="flex flex-col gap-2 text-sm text-brand-cream/70">
+          <span className="font-heading text-brand-cream">Legal</span>
+          <Link href="/politicas-de-uso" className="transition-colors hover:text-brand-gold">
+            Políticas de uso
+          </Link>
+          <Link href="/condiciones" className="transition-colors hover:text-brand-gold">
+            Condiciones
+          </Link>
+        </div>
       </div>
       <div className="border-t border-white/5 px-6 py-4 text-center text-xs text-brand-cream/40">
         © {new Date().getFullYear()} Wolf Daniel&apos;s &amp; Maktub. Todos los derechos reservados.
