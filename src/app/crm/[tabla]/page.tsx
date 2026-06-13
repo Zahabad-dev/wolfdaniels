@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CRM_TABLES, CrmTableSlug, query } from "@/lib/db";
 import PrioridadSelect from "./prioridad-select";
+import EstadoSelect from "./estado-select";
 import BotToggle from "./bot-toggle";
 import EliminarButton from "./eliminar-button";
 
@@ -73,6 +74,17 @@ export default async function CrmTablePage({
                 >
                   {columns.map((col) => {
                     const typedRow = row as Record<string, unknown>;
+
+                    if (tabla === "solicitudes" && col === "estado") {
+                      return (
+                        <td key={col} className="whitespace-nowrap px-4 py-2">
+                          <EstadoSelect
+                            numeroWhatsapp={String(typedRow.numero_whatsapp)}
+                            value={String(typedRow.estado)}
+                          />
+                        </td>
+                      );
+                    }
 
                     if (tabla === "solicitudes" && col === "prioridad") {
                       return (

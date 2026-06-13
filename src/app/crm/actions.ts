@@ -6,6 +6,7 @@ import { signIn, signOut, auth } from "@/auth";
 import { query } from "@/lib/db";
 
 const PRIORIDADES = ["BAJA", "MEDIA", "ALTA"] as const;
+const ESTADOS = ["Nuevo", "Escalado", "Atendido", "Cerrado"] as const;
 
 export async function loginAction(
   _prevState: string | undefined,
@@ -69,6 +70,22 @@ export async function actualizarPrioridadAction(formData: FormData) {
   await query(
     `UPDATE solicitudes_mayoreo SET prioridad = $1 WHERE numero_whatsapp = $2`,
     [prioridad, numeroWhatsapp]
+  );
+
+  revalidatePath("/crm/solicitudes");
+}
+
+export async function actualizarEstadoAction(formData: FormData) {
+  const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
+  const estado = String(formData.get("estado") || "");
+
+  if (!numeroWhatsapp || !ESTADOS.includes(estado as typeof ESTADOS[number])) {
+    return;
+  }
+
+  await query(
+    `UPDATE solicitudes_mayoreo SET estado = $1 WHERE numero_whatsapp = $2`,
+    [estado, numeroWhatsapp]
   );
 
   revalidatePath("/crm/solicitudes");

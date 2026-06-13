@@ -9,5 +9,5 @@ ALTER TABLE solicitudes_mayoreo
   ADD COLUMN IF NOT EXISTS intencion_compra BOOLEAN NOT NULL DEFAULT false,
   ADD COLUMN IF NOT EXISTS recordatorio_enviado BOOLEAN NOT NULL DEFAULT false;
 
-GRANT UPDATE (prioridad, bot_bloqueado) ON solicitudes_mayoreo TO crm_readonly;
+GRANT UPDATE (prioridad, bot_bloqueado, estado) ON solicitudes_mayoreo TO crm_readonly;
 GRANT DELETE ON solicitudes_mayoreo TO crm_readonly;
