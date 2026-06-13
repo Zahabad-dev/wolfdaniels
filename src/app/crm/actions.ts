@@ -74,6 +74,18 @@ export async function actualizarPrioridadAction(formData: FormData) {
   revalidatePath("/crm/solicitudes");
 }
 
+export async function eliminarSolicitudAction(formData: FormData) {
+  const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
+
+  if (!numeroWhatsapp) return;
+
+  await query(`DELETE FROM solicitudes_mayoreo WHERE numero_whatsapp = $1`, [
+    numeroWhatsapp,
+  ]);
+
+  revalidatePath("/crm/solicitudes");
+}
+
 export async function actualizarBotActivoAction(formData: FormData) {
   const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
   // El checkbox manda "on" cuando está activo (bot_bloqueado = false).

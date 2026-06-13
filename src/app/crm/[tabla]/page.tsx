@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { CRM_TABLES, CrmTableSlug, query } from "@/lib/db";
 import PrioridadSelect from "./prioridad-select";
 import BotToggle from "./bot-toggle";
+import EliminarButton from "./eliminar-button";
 
 export const dynamic = "force-dynamic";
 
@@ -57,6 +58,11 @@ export default async function CrmTablePage({
                     {col}
                   </th>
                 ))}
+                {tabla === "solicitudes" && (
+                  <th className="whitespace-nowrap px-4 py-3 font-heading">
+                    Acciones
+                  </th>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -96,6 +102,13 @@ export default async function CrmTablePage({
                       </td>
                     );
                   })}
+                  {tabla === "solicitudes" && (
+                    <td className="whitespace-nowrap px-4 py-2">
+                      <EliminarButton
+                        numeroWhatsapp={String((row as Record<string, unknown>).numero_whatsapp)}
+                      />
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
