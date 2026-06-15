@@ -103,6 +103,29 @@ export async function eliminarSolicitudAction(formData: FormData) {
   revalidatePath("/crm/solicitudes");
 }
 
+export async function actualizarFaqAction(
+  _prevState: { error?: string; success?: string } | undefined,
+  formData: FormData
+): Promise<{ error?: string; success?: string }> {
+  const id = String(formData.get("id") || "");
+  const pregunta = String(formData.get("pregunta") || "").trim();
+  const respuesta = String(formData.get("respuesta") || "").trim();
+  const activo = formData.get("activo") === "on";
+
+  if (!id || !pregunta || !respuesta) {
+    return { error: "Pregunta y respuesta no pueden estar vacías." };
+  }
+
+  await query(
+    `UPDATE faq_mayoreo SET pregunta = $1, respuesta = $2, activo = $3 WHERE id = $4`,
+    [pregunta, respuesta, activo, id]
+  );
+
+  revalidatePath("/crm/faq");
+
+  return { success: "FAQ actualizada." };
+}
+
 export async function actualizarBotActivoAction(formData: FormData) {
   const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
   // El checkbox manda "on" cuando está activo (bot_bloqueado = false).

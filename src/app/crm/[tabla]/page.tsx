@@ -5,6 +5,7 @@ import PrioridadSelect from "./prioridad-select";
 import EstadoSelect from "./estado-select";
 import BotToggle from "./bot-toggle";
 import EliminarButton from "./eliminar-button";
+import FaqRowForm from "./faq-row-form";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +27,56 @@ export default async function CrmTablePage({
   }
 
   const info = CRM_TABLES[tabla];
+
+  if (tabla === "faq") {
+    const result = await query(
+      `SELECT f.id, a.codigo AS area, f.pregunta, f.respuesta, f.activo
+       FROM faq_mayoreo f
+       JOIN areas_mayoreo a ON f.area_id = a.id
+       ORDER BY a.codigo, f.id`
+    );
+
+    return (
+      <div className="min-h-screen bg-brand-black px-6 py-10">
+        <div className="mx-auto flex max-w-3xl flex-col gap-6">
+          <div>
+            <Link
+              href="/crm"
+              className="text-sm text-brand-cream/60 transition-colors hover:text-brand-gold"
+            >
+              ← Volver
+            </Link>
+            <h1 className="mt-1 text-2xl text-brand-cream">{info.label}</h1>
+            <p className="text-sm text-brand-cream/50">
+              Edita pregunta, respuesta o desactiva una FAQ. El agente la lee al
+              responder (incluye precios y cotizaciones).
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {result.rows.map((row) => {
+              const r = row as Record<string, unknown>;
+              return (
+                <FaqRowForm
+                  key={String(r.id)}
+                  id={String(r.id)}
+                  area={String(r.area)}
+                  pregunta={String(r.pregunta)}
+                  respuesta={String(r.respuesta)}
+                  activo={Boolean(r.activo)}
+                />
+              );
+            })}
+          </div>
+
+          {result.rows.length === 0 && (
+            <p className="text-center text-brand-cream/50">Sin registros.</p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   const result = await query(
     `SELECT * FROM ${info.table} ORDER BY 1 DESC LIMIT ${ROW_LIMIT}`
   );
