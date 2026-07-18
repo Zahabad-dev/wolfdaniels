@@ -6,6 +6,7 @@ import EstadoSelect from "./estado-select";
 import BotToggle from "./bot-toggle";
 import EliminarButton from "./eliminar-button";
 import FaqRowForm from "./faq-row-form";
+import FaqNewForm from "./faq-new-form";
 
 export const dynamic = "force-dynamic";
 
@@ -52,6 +53,8 @@ export default async function CrmTablePage({
               responder (incluye precios y cotizaciones).
             </p>
           </div>
+
+          <FaqNewForm />
 
           <div className="flex flex-col gap-4">
             {result.rows.map((row) => {

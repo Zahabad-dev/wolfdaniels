@@ -126,6 +126,39 @@ export async function actualizarFaqAction(
   return { success: "FAQ actualizada." };
 }
 
+export async function crearFaqAction(
+  _prevState: { error?: string; success?: string } | undefined,
+  formData: FormData
+): Promise<{ error?: string; success?: string }> {
+  const areaCodigo = String(formData.get("area_codigo") || "").trim().toUpperCase();
+  const pregunta = String(formData.get("pregunta") || "").trim();
+  const respuesta = String(formData.get("respuesta") || "").trim();
+
+  if (!areaCodigo || !pregunta || !respuesta) {
+    return { error: "Área, pregunta y respuesta son obligatorios." };
+  }
+
+  const areaResult = await query(
+    `SELECT id FROM areas_mayoreo WHERE codigo = $1`,
+    [areaCodigo]
+  );
+
+  if (areaResult.rows.length === 0) {
+    return { error: `Área "${areaCodigo}" no existe en la base de datos.` };
+  }
+
+  const areaId = (areaResult.rows[0] as Record<string, unknown>).id;
+
+  await query(
+    `INSERT INTO faq_mayoreo (area_id, pregunta, respuesta, activo) VALUES ($1, $2, $3, true)`,
+    [areaId, pregunta, respuesta]
+  );
+
+  revalidatePath("/crm/faq");
+
+  return { success: "Pregunta agregada correctamente." };
+}
+
 export async function actualizarBotActivoAction(formData: FormData) {
   const numeroWhatsapp = String(formData.get("numero_whatsapp") || "");
   // El checkbox manda "on" cuando está activo (bot_bloqueado = false).
