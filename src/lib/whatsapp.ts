@@ -1,6 +1,5 @@
-const DEFAULT_NUMBER = "5217712143401";
+const WHATSAPP_NUMBER = "527712143401";
 
 export function whatsappLink(message: string) {
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || DEFAULT_NUMBER;
-  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }

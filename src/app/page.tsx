@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { whatsappLink } from "@/lib/whatsapp";
 
 const FEATURES = [
@@ -218,6 +219,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }
