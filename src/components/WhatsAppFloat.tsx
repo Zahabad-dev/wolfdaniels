@@ -3,7 +3,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 export default function WhatsAppFloat() {
   return (
     <a
-      href={whatsappLink("Hola, me interesa cotizar camisas vaqueras al mayoreo (Wolf Daniel's / Maktub).")}
+      href={whatsappLink("Hola, me interesa cotizar camisas vaqueras al mayoreo (Wolf Daniel's / Maktub). [Sitio web: wolfdanielsymaktub.com]")}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Cotizar por WhatsApp"
