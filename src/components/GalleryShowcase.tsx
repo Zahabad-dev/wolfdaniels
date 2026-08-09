@@ -4,7 +4,7 @@ import ScrollReveal from "./ScrollReveal";
 const STORY = [
   {
     src: "/gallery/detail-06.webp",
-    alt: "Sombrero vaquero clásico Wolf Daniel's en el monte",
+    alt: "Camisa Wolf Daniel's morada, sombrero vaquero en mano, entre monte y ramas secas",
     eyebrow: "Origen",
     title: "Nacidas en el campo",
     text: "Cada modelo se piensa para el trabajo real: sol, polvo y jornadas largas.",
@@ -12,7 +12,7 @@ const STORY = [
   },
   {
     src: "/gallery/detail-08.webp",
-    alt: "Camisa a cuadros roja Wolf Daniel's, detalle de tela",
+    alt: "Camisa a cuadros roja Wolf Daniel's, detalle de tela y estampado",
     eyebrow: "Tela",
     title: "Color que no se apaga",
     text: "Estampados y tejidos seleccionados para aguantar lavado tras lavado.",
@@ -20,7 +20,7 @@ const STORY = [
   },
   {
     src: "/gallery/detail-04.webp",
-    alt: "Chamarra negra con bandera de México bordada",
+    alt: "Chamarra negra Wolf Daniel's con bandera de México bordada en la espalda",
     eyebrow: "Identidad",
     title: "Hecho en México",
     text: "Fabricación propia, con orgullo, para quien representa el campo mexicano.",

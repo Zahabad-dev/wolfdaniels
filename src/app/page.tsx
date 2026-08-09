@@ -284,7 +284,9 @@ export default function Home() {
                 Nuestras sucursales
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-center text-brand-cream/70">
-                Visítanos o confirma tu pedido al{" "}
+                Visítanos, o si prefieres, hacemos envíos de camisas vaqueras
+                al mayoreo a cualquier estado de la República Mexicana.
+                Confirma tu pedido al{" "}
                 <a
                   href={whatsappLink("Hola, quiero confirmar un pedido al mayoreo.")}
                   target="_blank"
