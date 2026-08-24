@@ -7,6 +7,7 @@ import BotToggle from "./bot-toggle";
 import EliminarButton from "./eliminar-button";
 import FaqRowForm from "./faq-row-form";
 import FaqNewForm from "./faq-new-form";
+import PhoneSearch from "./phone-search";
 
 export const dynamic = "force-dynamic";
 
@@ -18,10 +19,14 @@ function isCrmTableSlug(value: string): value is CrmTableSlug {
 
 export default async function CrmTablePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ tabla: string }>;
+  searchParams: Promise<{ q?: string }>;
 }) {
   const { tabla } = await params;
+  const { q } = await searchParams;
+  const busqueda = (q || "").trim();
 
   if (!isCrmTableSlug(tabla)) {
     notFound();
@@ -80,9 +85,18 @@ export default async function CrmTablePage({
     );
   }
 
-  const result = await query(
-    `SELECT * FROM ${info.table} ORDER BY 1 DESC LIMIT ${ROW_LIMIT}`
-  );
+  const busquedaDigitos = busqueda.replace(/\D/g, "");
+  const puedeBuscarTelefono = tabla === "solicitudes";
+
+  const result =
+    puedeBuscarTelefono && busquedaDigitos
+      ? await query(
+          `SELECT * FROM ${info.table} WHERE numero_whatsapp ILIKE $1 ORDER BY 1 DESC LIMIT ${ROW_LIMIT}`,
+          [`%${busquedaDigitos}%`]
+        )
+      : await query(
+          `SELECT * FROM ${info.table} ORDER BY 1 DESC LIMIT ${ROW_LIMIT}`
+        );
 
   const columns = result.fields.map((f) => f.name);
 
@@ -99,10 +113,15 @@ export default async function CrmTablePage({
             </Link>
             <h1 className="mt-1 text-2xl text-brand-cream">{info.label}</h1>
             <p className="text-sm text-brand-cream/50">
-              {info.table} · últimos {ROW_LIMIT} registros
+              {info.table} ·{" "}
+              {puedeBuscarTelefono && busquedaDigitos
+                ? `${result.rows.length} resultado(s) para "${busqueda}"`
+                : `últimos ${ROW_LIMIT} registros`}
             </p>
           </div>
         </div>
+
+        {puedeBuscarTelefono && <PhoneSearch defaultValue={busqueda} />}
 
         <div className="overflow-x-auto rounded-2xl border border-white/10">
           <table className="w-full min-w-max text-left text-sm">
